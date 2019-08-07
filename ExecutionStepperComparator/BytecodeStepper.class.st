@@ -17,6 +17,11 @@ BytecodeStepper >> context [
 	^ process suspendedContext
 ]
 
+{ #category : #'debugger access' }
+BytecodeStepper >> contextStack [
+	^ self context stack
+]
+
 { #category : #public }
 BytecodeStepper >> executionFinished [
 	^ self context method selector = #newProcess.

@@ -17,6 +17,14 @@ DASTStepper >> context [
 	^ dastInterpreter currentContext
 ]
 
+{ #category : #'debugger access' }
+DASTStepper >> contextStack [
+	| cStack |
+	cStack := self context senders copy.
+	cStack addFirst: self.
+	^ cStack
+]
+
 { #category : #accessing }
 DASTStepper >> executionFinished [
 	^ dastInterpreter isTerminated
