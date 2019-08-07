@@ -78,17 +78,6 @@ ExecutionStepperComparator class >> runPointNew [
 	
 ]
 
-{ #category : #pointNew }
-ExecutionStepperComparator class >> setUpExPointNew [
-	| block bs ds |
-	block := ExecutionStepperComparator new exPointNew.
-
-	bs := BytecodeStepper startOn: block.
-	ds := DASTStepper startOn: block.
-
-	^ { bs. ds. }
-]
-
 { #category : #testing }
 ExecutionStepperComparator >> compare: aBytecodeStepper with: aDASTStepper [
 	btcdStepper := aBytecodeStepper.
