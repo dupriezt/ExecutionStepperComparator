@@ -19,6 +19,11 @@ ExecutionStepperComparator class >> exCallMethodWithArgumentsAndTemporaryVariabl
 	^ [ ExecutionStepperComparator method1: 4 with: 5 ]
 ]
 
+{ #category : #ifTrueIfFalse }
+ExecutionStepperComparator class >> exIfTrueIfFalse [
+	^ [ false ifTrue: ['true'] ifFalse: [ 'false' ] ]
+]
+
 { #category : #pointNew }
 ExecutionStepperComparator class >> exPointNew [
 	^ [ Point new ]
@@ -41,6 +46,19 @@ ExecutionStepperComparator class >> runCallMethodWithArgumentsAndTemporaryVariab
 	dast := DASTStepper startOn: block.
 	[btcd selector = #method1:with:] whileFalse: [ btcd step ].
 	[dast selector = #method1:with:] whileFalse: [ dast step ].
+	
+	comparator := self new compare: btcd with: dast.
+	comparator inspect; inspect.
+	
+]
+
+{ #category : #callMethodWithArgumentsAndTemporaryVariables }
+ExecutionStepperComparator class >> runIfTrueIfFalse [
+	<script>
+	| block btcd dast comparator |
+	block := ExecutionStepperComparator exIfTrueIfFalse.
+	btcd := BytecodeStepper startOn: block.
+	dast := DASTStepper startOn: block.
 	
 	comparator := self new compare: btcd with: dast.
 	comparator inspect; inspect.
